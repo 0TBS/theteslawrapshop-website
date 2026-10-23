@@ -20,7 +20,7 @@ export default async function EditPostPage({
 
   const supabase = await createClient();
   const { data } = await supabase
-    .from("blog_posts")
+    .from("tesla_blog_posts")
     .select("*")
     .eq("id", id)
     .maybeSingle();

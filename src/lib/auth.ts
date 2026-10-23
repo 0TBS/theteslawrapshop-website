@@ -9,7 +9,9 @@ export async function getUser() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    return user;
+    if (!user) return null;
+    const { data: isAdmin, error } = await supabase.rpc("is_tesla_admin");
+    return error || !isAdmin ? null : user;
   } catch {
     return null;
   }

@@ -37,7 +37,7 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
   try {
     const supabase = readClient();
     const { data, error } = await supabase
-      .from("blog_posts")
+      .from("tesla_blog_posts")
       .select("*")
       .eq("published", true)
       .order("published_at", { ascending: false });
@@ -55,7 +55,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const supabase = readClient();
     const { data, error } = await supabase
-      .from("blog_posts")
+      .from("tesla_blog_posts")
       .select("*")
       .eq("slug", slug)
       .eq("published", true)

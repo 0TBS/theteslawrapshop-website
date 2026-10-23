@@ -18,7 +18,7 @@ async function counts() {
       .from("quote_submissions")
       .select("*", { count: "exact", head: true })
       .eq("status", "new"),
-    supabase.from("blog_posts").select("*", { count: "exact", head: true }),
+    supabase.from("tesla_blog_posts").select("*", { count: "exact", head: true }),
     supabase.from("gallery_items").select("*", { count: "exact", head: true }),
   ]);
   return {

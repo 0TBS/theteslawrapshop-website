@@ -15,7 +15,7 @@ export async function importStarterContent() {
   await requireUser();
   const supabase = await createClient();
 
-  await supabase.from("blog_posts").upsert(
+  await supabase.from("tesla_blog_posts").upsert(
     blogPosts.map((p) => ({
       slug: p.slug,
       title: p.title,
@@ -101,9 +101,9 @@ export async function savePost(formData: FormData) {
   };
 
   if (id) {
-    await supabase.from("blog_posts").update(row).eq("id", id);
+    await supabase.from("tesla_blog_posts").update(row).eq("id", id);
   } else {
-    await supabase.from("blog_posts").insert(row);
+    await supabase.from("tesla_blog_posts").insert(row);
   }
 
   revalidatePath("/blog");
@@ -116,7 +116,7 @@ export async function deletePost(formData: FormData) {
   await requireUser();
   const id = String(formData.get("id") ?? "");
   const supabase = await createClient();
-  await supabase.from("blog_posts").delete().eq("id", id);
+  await supabase.from("tesla_blog_posts").delete().eq("id", id);
   revalidatePath("/blog");
   revalidatePath("/blog/[slug]", "page");
   revalidatePath("/admin/blog");

@@ -18,7 +18,7 @@ export default async function AdminBlogList() {
   if (isSupabaseConfigured) {
     const supabase = await createClient();
     const { data } = await supabase
-      .from("blog_posts")
+      .from("tesla_blog_posts")
       .select("*")
       .order("published_at", { ascending: false });
     posts = (data as BlogPost[]) ?? [];
